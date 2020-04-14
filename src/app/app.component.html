@@ -1,20 +1,151 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!-- Header -->
+<nav class="navbar shadow-sm p-3 mb-5 bg-white rounded" [ngClass]="translate.currentLang && translate.currentLang !== 'tn' ? 'ltr-direction' : 'rtl-direction'">
+	<span class="p-2">
+		<a href="https://deplacement-covid-19.web.app" title="">
+			<img src="../assets/images/logo.png" alt="deplacement-covid-19"> </a>
+	</span>
+	<ngx-flag-picker #selectedLang [selectedCountryCode]="selectedCountryCode" [countryCodes]="translate.getLangs()"
+		(changedCountryCode)="switchLang($event)">
+	</ngx-flag-picker>
+</nav>
+<!-- Header -->
 
+<!-- Container -->
+<div class="container"
+	[ngClass]="translate.currentLang && translate.currentLang !== 'tn' ? 'ltr-direction' : 'rtl-direction'">
+
+	<h1 class="form-row">
+		<span class="covid-title col-md-2 mb-3">{{'title' | translate}}</span>
+		<span class="covid-subtitle col-md-10 mb-3">{{'subtitle' | translate}}</span>
+	</h1>
+
+	<div class="form-row">
+		<p class="justify-content"> {{'description' | translate}} </p>
+	</div>
+
+
+	<form class="needs-validation" novalidate>
+
+		<h4> {{'form-title' | translate}} :</h4>
+		<span>{{'form-message' | translate}}</span>
+
+		<div class="form-row">
+			<div class="col-md-6 mb-3">
+				<label for="validationCustom01">{{'firstName' | translate}}</label>
+				<input type="text" class="form-control" id="validationCustom01"
+					placeholder="{{'firstNamePlaceholder' | translate}}" required>
+				<div class="valid-feedback">
+					{{'fieldFeedback' | translate}}
+				</div>
+			</div>
+
+			<div class="col-md-6 mb-3">
+				<label for="validationCustom02">{{'lastName' | translate}}</label>
+				<input type="text" class="form-control" id="validationCustom02"
+					placeholder="{{'lastNamePlaceholder' | translate}}" required>
+				<div class="valid-feedback">
+					{{'fieldFeedback' | translate}}
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="field-birthday" id="field-birthday-label">{{'birthday' | translate}}</label>
+			<div class="input-group  align-items-center">
+				<input type="text"
+					pattern="^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)"
+					inputmode="numeric" class="form-control" id="field-birthday" name="birthday" aria-invalid="true"
+					autocomplete="bday" placeholder="01/01/1970" maxlength="10" required>
+				<span class="validity" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="col-md-12 mb-3">
+				<label for="validationCustom04">{{'birthplace' | translate}}</label>
+				<input type="text" class="form-control" id="validationCustom04"
+					placeholder="{{'birthplacePlaceholder'| translate}}" required>
+				<div class="invalid-feedback">
+					{{'birthplaceFeedback' | translate}}
+				</div>
+			</div>
+
+			<div class="col-md-12 mb-3">
+				<label for="validationCustom04">{{'address' | translate}}</label>
+				<input type="text" class="form-control" id="validationCustom04"
+					placeholder="{{'addressPlaceholder' | translate}}" required>
+				<div class="invalid-feedback">
+					{{'addressFeedback' | translate}}
+				</div>
+			</div>
+
+			<div class="col-md-6 mb-3">
+				<label for="validationCustom03">{{'city' | translate}}</label>
+				<input type="text" class="form-control" id="validationCustom03"
+					placeholder="{{'cityPlaceholder' | translate}}" required>
+				<div class="invalid-feedback">
+					{{'cityFeedback' | translate}}
+				</div>
+			</div>
+
+			<div class="col-md-6 mb-3">
+				<label for="validationCustom05">{{'zip' | translate}}</label>
+				<input type="text" class="form-control" id="validationCustom05"
+					placeholder="{{'zipPlaceholder' | translate}}" required>
+				<div class="invalid-feedback">
+					{{'zipFeedback' | translate}}
+				</div>
+			</div>
+
+		</div>
+
+		<div class="form-row">
+			<legend>{{'patternTitle' | translate}} </legend>
+		</div>
+
+		<div class="form-group">
+			<div class="custom-control custom-checkbox" *ngFor="let reason of reasons; let index;">
+				<input type="checkbox" class="custom-control-input" id="{{index}}">
+				<label class="custom-control-label justify-content" for="{{index}}">{{reason}}</label>
+				<div class="invalid-feedback">
+					{{reason}}
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="field-datesortie">{{'exitDate' |translate}}</label>
+			<div class="input-group  align-items-center">
+				<input type="date" class="form-control" id="field-datesortie" name="datesortie" autocomplete="off"
+					placeholder="JJ/MM/YYYY" aria-invalid="true" required>
+				<span class="validity" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="field-heuresortie">{{'exitTime' |translate}}</label>
+			<div class="input-group  align-items-center">
+				<input type="time" class="form-control" id="field-heuresortie" name="heure" autocomplete="off"
+					aria-invalid="true" required>
+				<span class="validity" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<button class="btn btn-primary" type="submit">{{'submit' |translate}}</button>
+	</form>
+</div>
+<!-- Container -->
+
+<!-- Footer -->
+<footer class="footer-copyright text-center py-3">
+	<p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by
+		<a href="bouhlel-ahmed.web.app">AhmedBhl</a>
+	</p>
+	<ul class="social-icons">
+		<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+		<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+		<li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+		<li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+	</ul>
+</footer>
+<!-- Footer -->
