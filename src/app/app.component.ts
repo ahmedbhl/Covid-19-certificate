@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ReasonAr, ReasonEn, ReasonFr } from './shared/static/reasons';
 
@@ -13,36 +14,41 @@ export class AppComponent {
 
   public selectedCountryCode;
 
+  public form: FormGroup;
 
-  constructor(public translate: TranslateService) {
-    this.initI18n();
+  public submitted = false;
+
+
+  constructor(public translate: TranslateService, private readonly _formBuilder: FormBuilder) {
+    this._initI18n();
+    this._initFormGroupe();
   }
 
   /**
    * Init the list of languages and detect the browser lang
    */
-  initI18n() {
+  private _initI18n() {
     this.translate.addLangs(['tn', 'fr', 'us']);
     this.selectedCountryCode = this.translate.getBrowserLang() ? this.translate.getBrowserLang() : 'tn';
     this.translate.use(this.selectedCountryCode);
-    this.initReasonList();
+    this._initReasonList();
   }
 
   /**
    * Switch the language
    * @param lang
    */
-  switchLang(lang: string) {
+  public switchLang(lang: string) {
     this.translate.use(lang);
     this.selectedCountryCode = lang;
-    this.initReasonList();
+    this._initReasonList();
   }
 
   /**
    * Init the reasons list by the selected Language
    */
-  initReasonList() {
-    switch (this.translate.currentLang) {
+  private _initReasonList() {
+    switch (this.selectedCountryCode) {
       case 'tn':
         this.reasons = ReasonAr;
         break;
@@ -55,5 +61,38 @@ export class AppComponent {
       default:
         this.reasons = ReasonAr;
     }
+  }
+
+  /**
+   * init all the fields of the form Group and add the validation
+   */
+  private _initFormGroupe() {
+    this.form = this._formBuilder.group({
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
+      birthday: [null, Validators.required],
+      birthplace: [null, Validators.required],
+      address: [null, Validators.required],
+      city: [null, Validators.required],
+      zip: [null, Validators.required],
+      reasonList: this._formBuilder.array(this.reasons),
+      exitDate: [null, Validators.required],
+      exitTime: [null, Validators.required],
+    });
+  }
+
+  // convenience getter for easy access to form fields
+  get formControls() { return this.form.controls; }
+
+  public onSubmit() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.submitted = false;
+   // this.form.reset();
+
   }
 }

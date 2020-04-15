@@ -1,5 +1,6 @@
 <!-- Header -->
-<nav class="navbar shadow-sm p-3 mb-5 bg-white rounded" [ngClass]="translate.currentLang && translate.currentLang !== 'tn' ? 'ltr-direction' : 'rtl-direction'">
+<nav class="navbar shadow-sm p-3 mb-5 bg-white rounded"
+	[ngClass]="translate.currentLang && translate.currentLang !== 'tn' ? 'ltr-direction' : 'rtl-direction'">
 	<span class="p-2">
 		<a href="https://deplacement-covid-19.web.app" title="">
 			<img src="../assets/images/logo.png" alt="deplacement-covid-19"> </a>
@@ -24,75 +25,85 @@
 	</div>
 
 
-	<form class="needs-validation" novalidate>
+	<form (ngSubmit)="onSubmit()" [formGroup]="form" class="needs-validation" novalidate>
 
 		<h4> {{'form-title' | translate}} :</h4>
 		<span>{{'form-message' | translate}}</span>
 
 		<div class="form-row">
 			<div class="col-md-6 mb-3">
-				<label for="validationCustom01">{{'firstName' | translate}}</label>
-				<input type="text" class="form-control" id="validationCustom01"
-					placeholder="{{'firstNamePlaceholder' | translate}}" required>
-				<div class="valid-feedback">
+				<label>{{'firstName' | translate}}</label>
+				<input type="text" class="form-control" formControlName="firstName"
+					placeholder="{{'firstNamePlaceholder' | translate}}" required
+					[class.is-invalid]="submitted && formControls.firstName.errors">
+				<div class="invalid-feedback" *ngIf="submitted && formControls.firstName.errors">
 					{{'fieldFeedback' | translate}}
 				</div>
 			</div>
 
 			<div class="col-md-6 mb-3">
-				<label for="validationCustom02">{{'lastName' | translate}}</label>
-				<input type="text" class="form-control" id="validationCustom02"
-					placeholder="{{'lastNamePlaceholder' | translate}}" required>
-				<div class="valid-feedback">
+				<label>{{'lastName' | translate}}</label>
+				<input type="text" class="form-control" formControlName="lastName"
+					placeholder="{{'lastNamePlaceholder' | translate}}" required
+					[class.is-invalid]="submitted && formControls.lastName.errors">
+				<div class="valid-feedback" *ngIf="submitted && formControls.lastName.errors">
 					{{'fieldFeedback' | translate}}
 				</div>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label for="field-birthday" id="field-birthday-label">{{'birthday' | translate}}</label>
+			<label>{{'birthday' | translate}}</label>
 			<div class="input-group  align-items-center">
-				<input type="text"
+				<input type="text" formControlName="birthday"
 					pattern="^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)"
-					inputmode="numeric" class="form-control" id="field-birthday" name="birthday" aria-invalid="true"
-					autocomplete="bday" placeholder="01/01/1970" maxlength="10" required>
+					inputmode="numeric" class="form-control" name="birthday" aria-invalid="true" autocomplete="bday"
+					placeholder="01/01/1970" maxlength="10" required
+					[class.is-invalid]="submitted && formControls.birthday.errors">
 				<span class="validity" aria-hidden="true"></span>
+			</div>
+			<div class="valid-feedback" *ngIf="submitted && formControls.birthday.errors">
+				{{'fieldFeedback' | translate}}
 			</div>
 		</div>
 
 		<div class="form-row">
 			<div class="col-md-12 mb-3">
-				<label for="validationCustom04">{{'birthplace' | translate}}</label>
-				<input type="text" class="form-control" id="validationCustom04"
-					placeholder="{{'birthplacePlaceholder'| translate}}" required>
-				<div class="invalid-feedback">
+				<label>{{'birthplace' | translate}}</label>
+				<input type="text" class="form-control" formControlName="birthplace"
+					placeholder="{{'birthplacePlaceholder'| translate}}" required
+					[class.is-invalid]="submitted && formControls.birthplace.errors">
+				<div class="invalid-feedback" *ngIf="submitted && formControls.birthplace.errors">
 					{{'birthplaceFeedback' | translate}}
 				</div>
 			</div>
 
 			<div class="col-md-12 mb-3">
-				<label for="validationCustom04">{{'address' | translate}}</label>
-				<input type="text" class="form-control" id="validationCustom04"
-					placeholder="{{'addressPlaceholder' | translate}}" required>
-				<div class="invalid-feedback">
+				<label>{{'address' | translate}}</label>
+				<input type="text" class="form-control" formControlName="address"
+					placeholder="{{'addressPlaceholder' | translate}}" required
+					[class.is-invalid]="submitted && formControls.address.errors">
+				<div class="invalid-feedback" *ngIf="submitted && formControls.address.errors">
 					{{'addressFeedback' | translate}}
 				</div>
 			</div>
 
 			<div class="col-md-6 mb-3">
-				<label for="validationCustom03">{{'city' | translate}}</label>
-				<input type="text" class="form-control" id="validationCustom03"
-					placeholder="{{'cityPlaceholder' | translate}}" required>
-				<div class="invalid-feedback">
+				<label>{{'city' | translate}}</label>
+				<input type="text" class="form-control" formControlName="city"
+					placeholder="{{'cityPlaceholder' | translate}}" required
+					[class.is-invalid]="submitted && formControls.city.errors">
+				<div class="invalid-feedback" *ngIf="submitted && formControls.city.errors">
 					{{'cityFeedback' | translate}}
 				</div>
 			</div>
 
 			<div class="col-md-6 mb-3">
-				<label for="validationCustom05">{{'zip' | translate}}</label>
-				<input type="text" class="form-control" id="validationCustom05"
-					placeholder="{{'zipPlaceholder' | translate}}" required>
-				<div class="invalid-feedback">
+				<label>{{'zip' | translate}}</label>
+				<input type="text" class="form-control" formControlName="zip"
+					placeholder="{{'zipPlaceholder' | translate}}" required
+					[class.is-invalid]="submitted && formControls.zip.errors">
+				<div class="invalid-feedback" *ngIf="submitted && formControls.zip.errors">
 					{{'zipFeedback' | translate}}
 				</div>
 			</div>
@@ -104,30 +115,35 @@
 		</div>
 
 		<div class="form-group">
-			<div class="custom-control custom-checkbox" *ngFor="let reason of reasons; let index;">
-				<input type="checkbox" class="custom-control-input" id="{{index}}">
-				<label class="custom-control-label justify-content" for="{{index}}">{{reason}}</label>
-				<div class="invalid-feedback">
+			<div class="custom-control custom-checkbox" *ngFor="let reason of reasons; let i = index"
+				formArrayName="reasonList">
+				<input type="checkbox" [value]="i" class="custom-control-input" [id]="i" [formControlName]="i"
+					[class.is-invalid]="submitted && formControls.reasonList.errors">
+				<label class="custom-control-label justify-content" [for]="i">{{reason}}</label>
+				<div class="invalid-feedback" *ngIf="submitted && formControls.reasonList.errors">
 					{{reason}}
 				</div>
 			</div>
 		</div>
 
-		<div class="form-group">
-			<label for="field-datesortie">{{'exitDate' |translate}}</label>
-			<div class="input-group  align-items-center">
-				<input type="date" class="form-control" id="field-datesortie" name="datesortie" autocomplete="off"
-					placeholder="JJ/MM/YYYY" aria-invalid="true" required>
-				<span class="validity" aria-hidden="true"></span>
+		<div class="form-row">
+			<div class="col-md-6 mb-3">
+				<label>{{'exitDate' |translate}}</label>
+				<input type="date" class="form-control" formControlName="exitDate" name="datesortie" autocomplete="off"
+					placeholder="JJ/MM/YYYY" aria-invalid="true" required
+					[class.is-invalid]="submitted && formControls.exitDate.errors">
+				<div class="invalid-feedback" *ngIf="submitted && formControls.exitDate.errors">
+					{{'fieldFeedback' | translate}}
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<label for="field-heuresortie">{{'exitTime' |translate}}</label>
-			<div class="input-group  align-items-center">
-				<input type="time" class="form-control" id="field-heuresortie" name="heure" autocomplete="off"
-					aria-invalid="true" required>
-				<span class="validity" aria-hidden="true"></span>
+			<div class="col-md-6 mb-3">
+				<label>{{'exitTime' |translate}}</label>
+				<input type="time" class="form-control" formControlName="exitTime" name="heure" autocomplete="off"
+					aria-invalid="true" required [class.is-invalid]="submitted && formControls.exitTime.errors">
+				<div class="invalid-feedback" *ngIf="submitted && formControls.exitTime.errors">
+					{{'fieldFeedback' | translate}}
+				</div>
 			</div>
 		</div>
 

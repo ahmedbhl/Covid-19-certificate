@@ -27,6 +27,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "3.5.0",
     "ngx-flag-picker": "^8.0.0",
+    "ngx-qrcode2": "0.0.9",
     "popper.js": "1.16.1",
     "rxjs": "~6.3.3",
     "shared": "^0.2.0",
