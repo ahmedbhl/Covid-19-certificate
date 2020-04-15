@@ -163,3 +163,16 @@
     font-weight:600
   }
 }
+
+.signature-pad-clear-btn{
+  position: relative;
+  top: 30px;
+  float: right;
+  right: 12px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.signature-pad-clear-btn:hover {
+  height: 21px;
+}

@@ -18,6 +18,8 @@ export class AppComponent {
 
   public submitted = false;
 
+  public signatureImage;
+
 
   constructor(public translate: TranslateService, private readonly _formBuilder: FormBuilder) {
     this._initI18n();
@@ -84,15 +86,28 @@ export class AppComponent {
   // convenience getter for easy access to form fields
   get formControls() { return this.form.controls; }
 
+  /**
+   * Submit the form values
+   */
   public onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
     if (this.form.invalid) {
+      this.signatureImage = '';
       return;
     }
 
     this.submitted = false;
-   // this.form.reset();
+    // this.form.reset();
 
   }
+
+  /**
+   * Set the sugnature
+   * @param data 
+   */
+  setSignature(data) {
+    this.signatureImage = data;
+  }
+
 }

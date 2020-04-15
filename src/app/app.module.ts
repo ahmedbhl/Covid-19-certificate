@@ -8,6 +8,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxFlagPickerModule } from 'ngx-flag-picker';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { SignaturePadModule } from '@ng-plus/signature-pad';
 
 export function httpTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -19,6 +20,7 @@ export function httpTranslateLoader(http: HttpClient) {
     BrowserModule,
     NgxQRCodeModule,
     HttpClientModule,
+    SignaturePadModule,
     ReactiveFormsModule,
     NgxFlagPickerModule,
     TranslateModule.forRoot({

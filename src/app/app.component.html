@@ -147,6 +147,12 @@
 			</div>
 		</div>
 
+		<img src="../assets/images/redo-alt-solid.svg" alt="X" class="signature-pad-clear-btn"
+			(click)="signaturePad.clearPad()">
+		<ng-signature-pad format="base64" [emitOnDragEnd]="true" (done)="setSignature($event)" [showClearButton]="false"
+			[showDoneButton]="false" #signaturePad>
+		</ng-signature-pad>
+
 		<button class="btn btn-primary" type="submit">{{'submit' |translate}}</button>
 	</form>
 </div>
