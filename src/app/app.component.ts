@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { PDFDocument } from 'pdf-lib';
 import { ReasonAr, ReasonEn, ReasonFr } from './shared/static/reasons';
+import { PdfUtil } from './shared/utils/pdf-util';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +23,8 @@ export class AppComponent {
   public signatureImage;
 
 
-  constructor(public translate: TranslateService, private readonly _formBuilder: FormBuilder) {
+  constructor(public translate: TranslateService,
+    private readonly _formBuilder: FormBuilder) {
     this._initI18n();
     this._initFormGroupe();
   }
@@ -78,8 +81,8 @@ export class AppComponent {
       city: [null, Validators.required],
       zip: [null, Validators.required],
       reasonList: this._formBuilder.array(this.reasons),
-      exitDate: [null, Validators.required],
-      exitTime: [null, Validators.required],
+      exitDate: [new Date().toISOString().substring(0, 10), Validators.required],
+      exitTime: [new Date().toTimeString().substring(0, 5), Validators.required],
     });
   }
 
@@ -94,19 +97,23 @@ export class AppComponent {
     // stop here if form is invalid
     if (this.form.invalid) {
       this.signatureImage = '';
-      return;
+      // return;
     }
 
     this.submitted = false;
     // this.form.reset();
+    // this.modifyPdf();
+    PdfUtil.generatePdf(this.form.value, this.signatureImage);
 
   }
 
+
+
   /**
    * Set the sugnature
-   * @param data 
+   * @param data
    */
-  setSignature(data) {
+  public setSignature(data) {
     this.signatureImage = data;
   }
 
