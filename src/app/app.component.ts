@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { PDFDocument } from 'pdf-lib';
+import QRCode from 'qrcode';
 import { ReasonAr, ReasonEn, ReasonFr } from './shared/static/reasons';
 import { PdfUtil } from './shared/utils/pdf-util';
 
@@ -73,14 +73,14 @@ export class AppComponent {
    */
   private _initFormGroupe() {
     this.form = this._formBuilder.group({
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
-      birthday: [null, Validators.required],
-      birthplace: [null, Validators.required],
-      address: [null, Validators.required],
-      city: [null, Validators.required],
-      zip: [null, Validators.required],
-      reasonList: this._formBuilder.array(this.reasons),
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      birthday: ['', Validators.required],
+      birthplace: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      zip: ['', Validators.required],
+      reasonList: this._formBuilder.array(this.reasons.map(item => !item)),
       exitDate: [new Date().toISOString().substring(0, 10), Validators.required],
       exitTime: [new Date().toTimeString().substring(0, 5), Validators.required],
     });
@@ -92,22 +92,53 @@ export class AppComponent {
   /**
    * Submit the form values
    */
-  public onSubmit() {
+  public async onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
     if (this.form.invalid) {
-      this.signatureImage = '';
+      // this.signatureImage = '';
       // return;
     }
 
     this.submitted = false;
     // this.form.reset();
     // this.modifyPdf();
-    PdfUtil.generatePdf(this.form.value, this.signatureImage);
+    const qrCode = await this.generateQR(this.form.value);
+    PdfUtil.generatePdf(this.form.value, this.reasons, this.signatureImage, qrCode);
 
   }
 
+  /**
+   * Generate the QR Code with the given information
+   * @param profile
+   */
+  async generateQR(profile) {
+    const creationDate = new Date().toLocaleDateString('fr-FR');
+    const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', 'h');
+    const data = [
+      `Cree le: ${creationDate} a ${creationHour}`,
+      `Je soussigné(e),`,
+      `Mme/M.: ${profile.firstName} ${profile.lastName}`,
+      `Né(e) le: ${profile.birthday}`,
+      `À ${profile.birthplace} `,
+      `Demeurant: ${profile.address} ${profile.zip} ${profile.city}`,
+      `Motifs: ${profile.reasonList}`,
+      `Fait à: ${profile.city}`,
+      `Le: ${profile.exitDate} à ${profile.exitTime}h`,
+    ];
 
+    try {
+      const opts = {
+        errorCorrectionLevel: 'M',
+        type: 'image/png',
+        quality: 0.92,
+        margin: 1,
+      };
+      return await QRCode.toDataURL(data, opts);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   /**
    * Set the sugnature

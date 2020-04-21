@@ -31,6 +31,7 @@
     "ngx-qrcode2": "0.0.9",
     "pdf-lib": "^1.4.1",
     "popper.js": "1.16.1",
+    "qrcode": "^1.4.4",
     "rxjs": "~6.3.3",
     "shared": "^0.2.0",
     "signature_pad": "^3.0.0-beta.3",
