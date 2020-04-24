@@ -26,5 +26,6 @@
   "patternTitle": "Choisissez le ou les motif(s) de sortie",
   "exitDate": "Date de sortie",
   "exitTime": "Heure de sortie",
-  "submit": "Générer mon attestation"
+  "submit": "Générer mon attestation",
+  "copyright-text": "Le code source de ce service est consultable sur"
 }

@@ -26,5 +26,6 @@
   "patternTitle": "Choose the reason (s) for exit",
   "exitDate": "Exit Date",
   "exitTime": "Exit Time",
-  "submit": "Generate my certificate"
+  "submit": "Generate my certificate",
+  "copyright-text": "Le code source de ce service est consultable sur"
 }

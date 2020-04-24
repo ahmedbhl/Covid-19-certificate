@@ -159,9 +159,10 @@
 <!-- Container -->
 
 <!-- Footer -->
-<footer class="footer-copyright text-center py-3">
-	<p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by
-		<a href="bouhlel-ahmed.web.app">AhmedBhl</a>
+<footer class="footer-copyright text-center py-3"
+	[ngClass]="translate.currentLang && translate.currentLang !== 'tn' ? 'ltr-direction' : 'rtl-direction'">
+	<p class="copyright-text"> 2020 &copy;&nbsp;{{'copyright-text' |translate}}
+		<a href="https://github.com/ahmedbhl/Covid-19-certificate/tree/develop">Github.</a>
 	</p>
 	<ul class="social-icons">
 		<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
