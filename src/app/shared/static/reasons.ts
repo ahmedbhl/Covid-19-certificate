@@ -1,7 +1,7 @@
 export const ReasonAr: string[] = [
   "التنقل بين المنزل ومكان ممارسة النشاط المهني ، عند ضرورة ممارسة الأنشطة التي لا يمكن تنظيمها في شكل عمل عن بعد أو رحلات مهنيةلا يمكن تأجيلها.",
 
-  "التنقّل لشراء اللوازم المهمّة للنشاط المهني وشراء الضروريات الأساسية في المؤسسات التي لا تزال أنشطتها مصرح بها (قائمة الشركاتوالمؤسسات التي لا تزال مفتوحة).",
+  "التنقّل لشراء اللوازم المهمّة للنشاط المهني وشراء الضروريات الأساسية في المؤسسات التي لا تزال أنشطتها مصرح بها (قائمة الشركات والمؤسسات التي لا تزال مفتوحة).",
 
   "الاستشارات والرعاية الطبية التي لا يمكن تقديمها عن بعد والتي لا يمكن تأجيلها ؛  استشارة ورعاية المرضى الذين يعانون من حالة طويلةالأمد.",
 
@@ -31,15 +31,15 @@ export const ReasonFr: string[] = [
 ];
 
 export const ReasonEn: string[] = [
-  "Travel between the home and the place of exercise of the professional activity, when they are essential for the exercise of activities which cannot be organized in the form of telework or professional trips which cannot be deferred.",
+  "Mobility between the home and the place of exercise of the professional activity, when they are essential for the exercise of activities which cannot be organized in the form of telework or professional trips which cannot be deferred.",
 
-  "Travel to purchase supplies necessary for professional activity and purchases of basic necessities in establishments whose activities remain authorized.",
+  "Mobility to purchase supplies necessary for professional activity and purchases of basic necessities in establishments whose activities remain authorized.",
 
   "Consultations and care that cannot be provided remotely and that cannot be deferred; consultations and care of patients with a long-term condition.",
 
-  "Travel for compelling family reasons, for assistance to vulnerable persons or childcare.",
+  "Mobility for compelling family reasons, for assistance to vulnerable persons or childcare.",
 
-  "Brief trips, within the limit of one hour daily and within a maximum radius of one kilometer around the home, linked either to the individual physical activity of the people, to the exclusion of any collective sporting practice and any proximity to d 'other people, either walking with the only people in the same home, or the needs of pets.",
+  "Brief trips, within the limit of one hour daily and within a maximum radius of one kilometer around the home, linked either to the individual physical activity of the people, to the exclusion of any collective sporting practice and any proximity to other people, either walking with the only people in the same home, or the needs of pets.",
 
   "Judicial or administrative summons.",
 

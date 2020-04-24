@@ -91,7 +91,7 @@ export class PdfUtil {
 
         const pdfBytes = await pdfDoc.save();
 
-        this._downloadBlob(new Blob([pdfBytes], { type: 'application/pdf' }), 'pdf');
+        this._downloadBlob(new Blob([pdfBytes], { type: 'application/pdf' }), profile.exitDate);
     }
 
 
