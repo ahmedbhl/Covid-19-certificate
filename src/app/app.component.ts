@@ -102,7 +102,6 @@ export class AppComponent {
 
     this.submitted = false;
     // this.form.reset();
-    // this.modifyPdf();
     const qrCode = await this.generateQR(this.form.value);
     PdfUtil.generatePdf(this.form.value, this.reasons, this.signatureImage, qrCode);
 
