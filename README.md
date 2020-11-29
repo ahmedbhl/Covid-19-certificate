@@ -2,6 +2,9 @@
 
 [![github](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com/ahmedbhl/Covid-19-certificate)
 [![angular](https://badgen.net/badge/Angular%20CLI/v%207.0.4/red)](https://github.com/angular/angular-cli)
+
+## Demo
+
 [![Demo](https://badgen.net/badge/Demo/ClicMe/green)](https://deplacement-covid-19.web.app)
 
 ## Development
